@@ -62,8 +62,9 @@ Open your browser and go to http://localhost:3000 to access the application.
 Contributing
 Contributions are welcome! If you have suggestions, bug reports, or feature requests, please open an issue or submit a pull request.
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+## License
+
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 
 
