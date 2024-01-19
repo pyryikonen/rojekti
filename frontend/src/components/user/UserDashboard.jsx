@@ -9,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useAuth } from "../auth/authContext.jsx";
 import { useNavigate } from "react-router-dom";
-import WordPairCreation from "../admin/WordPairCreation.jsx";
+import WordPairList from "./WordPairList.jsx";
 import CurrentUserComponent from "../shared/CurrentUserComponent.jsx";
 
 const defaultTheme = createTheme();
@@ -61,7 +61,7 @@ export const UserDashboard = () => {
         </Toolbar>
       </MuiAppBar>
 
-      <WordPairCreation />
+      <WordPairList></WordPairList>
     </ThemeProvider>
   );
 };

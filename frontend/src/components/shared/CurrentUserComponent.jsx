@@ -3,7 +3,7 @@ import axios from "axios";
 
 const CurrentUserComponent = () => {
   const [currentUser, setCurrentUser] = useState(null);
-
+  /*
   useEffect(() => {
     const fetchCurrentUser = async () => {
       try {
@@ -25,7 +25,7 @@ const CurrentUserComponent = () => {
 
     fetchCurrentUser();
   }, []);
-
+  */
   return (
     <div>
       {currentUser ? (
