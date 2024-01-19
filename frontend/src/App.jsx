@@ -16,23 +16,6 @@ const darkTheme = createTheme({
   },
 });
 
-const LandingPage = () => {
-  return (
-    <div>
-      <h2>Welcome to our App!</h2>
-      <p>Choose an option:</p>
-      <ul>
-        <li>
-          <a href="/signin">Sign In</a>
-        </li>
-        <li>
-          <a href="/signup">Sign Up</a>
-        </li>
-      </ul>
-    </div>
-  );
-};
-
 const App = () => {
   useEffect(() => {}, []);
 
@@ -56,7 +39,7 @@ const App = () => {
       <AuthProvider>
         <Router>
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<SignIn />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/userdashboard" element={<UserDashboard />} />
