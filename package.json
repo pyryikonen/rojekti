@@ -10,7 +10,8 @@
   "scripts": {
     "start": "npm run frontend & npm run backend",
     "frontend": "npm run dev --workspace=frontend",
-    "backend": "npm start --workspace=backend"
+    "backend": "npm start --workspace=backend",
+    "build": "cd frontend && npm run build"
   },
   "dependencies": {
     "@babel/preset-react": "^7.23.3",
