@@ -1,6 +1,6 @@
 // UserDashboard.jsx
 import React from "react";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -9,7 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useAuth } from "../auth/authContext.jsx";
 import { useNavigate } from "react-router-dom";
-import TranslationComponent from "./TranslationComponent.jsx";
+import WordPairsList from "./WordPairList.jsx";
 
 const defaultTheme = createTheme();
 
@@ -19,12 +19,16 @@ export default function UserDashboard() {
     setOpen(!open);
   };
 
-  const { user, logout } = useAuth();
+  const { user, role, logout, login } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     logout();
     navigate("/signin");
+  };
+
+  const handleLogin = () => {
+    login();
   };
 
   return (
@@ -53,7 +57,7 @@ export default function UserDashboard() {
             sx={{ flexGrow: 1 }}
           >
             {user
-              ? `Welcome, ${user.username}! (User Dashboard)`
+              ? `Welcome, ${user && user.username}! (User Dashboard)`
               : "Welcome, Guest!"}
           </Typography>
           <IconButton color="inherit" onClick={handleLogout}>
@@ -61,7 +65,9 @@ export default function UserDashboard() {
           </IconButton>
         </Toolbar>
       </MuiAppBar>
-      <TranslationComponent />
+
+      {/* Include WordPairsList component here */}
+      <WordPairsList />
     </ThemeProvider>
   );
 }

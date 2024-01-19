@@ -38,7 +38,7 @@ const SignUp = () => {
       console.log("Form Data:", formData);
 
       const response = await axios.post(
-        "http://localhost:3001/register",
+        `${import.meta.env.VITE_API_URL}/register`,
         formData,
         { withCredentials: true }
       );
@@ -48,10 +48,6 @@ const SignUp = () => {
       if (response && response.data) {
         console.log(response.data); // User registered successfully
         setSuccessMessage("User registered successfully!");
-        localStorage.setItem(
-          "token",
-          JSON.stringify({ token: response.data.token })
-        );
         // Redirect to the sign-in page
         navigate("/signin");
       } else {

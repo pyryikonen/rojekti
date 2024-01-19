@@ -21,60 +21,40 @@ const defaultTheme = createTheme();
 const SignIn = () => {
   const navigate = useNavigate();
   const { login } = useAuth();
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
 
-  const [errorMessage, setErrorMessage] = useState(null);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Log the request payload before making the request
-    console.log("Request Payload:", formData);
-
     try {
       const response = await axios.post(
-        "http://localhost:3001/login",
-        formData,
-        { withCredentials: true }
+        `${import.meta.env.VITE_API_URL}/login`,
+        {
+          email: formData.email,
+          password: formData.password,
+        }
       );
 
-      if (response && response.data) {
-        const { user, token, role } = response.data;
-
-        // Store the token in localStorage or a more secure storage mechanism
-        localStorage.setItem("token", token);
-
-        // Update your AuthContext with the login information
-        login(user, token, role);
-
-        // Redirect based on the user's role
-        if (role === "admin") {
-          navigate("/admindashboard");
-        } else {
-          navigate("/userdashboard");
-        }
+      if (response.data.success) {
+        login(response.data.user);
+        navigate(
+          response.data.user.role === "admin"
+            ? "/admindashboard"
+            : "/userdashboard"
+        );
       } else {
-        console.error("Response data is undefined.");
+        console.error("Login failed:", response.data.message);
+        // Handle error message display or state update here
       }
     } catch (error) {
-      console.error("Error:", error);
-      if (error.response && error.response.data) {
-        setErrorMessage(error.response.data.message); // Display error message
-      } else {
-        setErrorMessage("An error occurred during login.");
-      }
+      console.error("Error during login:", error);
+      // Handle error message display or state update here
     }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   return (
@@ -96,11 +76,6 @@ const SignIn = () => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          {errorMessage && (
-            <Typography variant="body2" color="error" sx={{ mt: 2 }}>
-              {errorMessage}
-            </Typography>
-          )}
           <Box
             component="form"
             onSubmit={handleSubmit}

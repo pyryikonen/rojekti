@@ -1,6 +1,6 @@
 // AdminDashboard.jsx
 import React from "react";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -10,7 +10,6 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useAuth } from "../auth/authContext.jsx";
 import { useNavigate } from "react-router-dom";
 import WordPairCreation from "./WordPairCreation.jsx";
-import { Button } from "@mui/material";
 
 const defaultTheme = createTheme();
 
@@ -20,7 +19,7 @@ export default function AdminDashboard() {
     setOpen(!open);
   };
 
-  const { user, role, logout } = useAuth();
+  const { user, role, logout, login } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {

@@ -1,8 +1,7 @@
 // WordPairCreation.jsx
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { Button, TextField, CircularProgress } from "@mui/material";
-import React from "react";
 
 const WordPairCreation = () => {
   const [sourceLanguage, setSourceLanguage] = useState("");
@@ -11,37 +10,32 @@ const WordPairCreation = () => {
   const [translatedWord, setTranslatedWord] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleTranslate = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.post("http://localhost:3001/translate", {
-        text: sourceWord,
-        targetLanguage,
-      });
-      setTranslatedWord(response.data.translation);
-    } catch (error) {
-      console.error("Translation Error:", error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handlePublish = async () => {
     try {
       setLoading(true);
-      // Send the word pair to the server to be saved and published
-      await axios.post("http://localhost:3001/wordpairs", {
-        source_language: sourceLanguage,
-        target_language: targetLanguage,
-        source_word: sourceWord,
-        translated_word: translatedWord,
-        // You may need to pass admin_id and user_id here
-      });
-      // Clear the form after successful publication
-      setSourceLanguage("");
-      setTargetLanguage("");
-      setSourceWord("");
-      setTranslatedWord("");
+
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/wordpairs`,
+        {
+          source_language: sourceLanguage,
+          target_language: targetLanguage,
+          source_word: sourceWord,
+          translated_word: translatedWord,
+          // Add admin_id and user_id here if needed
+        }
+      );
+
+      if (response.data.success) {
+        console.log("Word pair published successfully:", response.data);
+        // Clear the form after successful publication
+        setSourceLanguage("");
+        setTargetLanguage("");
+        setSourceWord("");
+        setTranslatedWord("");
+      } else {
+        console.error("Publish failed:", response.data.message);
+        // Handle the error, display a message, or update state accordingly
+      }
     } catch (error) {
       console.error("Publish Error:", error.message);
     } finally {
@@ -50,7 +44,15 @@ const WordPairCreation = () => {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100vh",
+      }}
+    >
       <TextField
         label="Source Language"
         value={sourceLanguage}
@@ -70,11 +72,7 @@ const WordPairCreation = () => {
         label="Translated Word"
         value={translatedWord}
         onChange={(e) => setTranslatedWord(e.target.value)}
-        disabled
       />
-      <Button onClick={handleTranslate} disabled={loading}>
-        {loading ? <CircularProgress size={20} /> : "Translate"}
-      </Button>
       <Button onClick={handlePublish} disabled={loading}>
         {loading ? <CircularProgress size={20} /> : "Publish Word Pair"}
       </Button>

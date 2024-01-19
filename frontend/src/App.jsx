@@ -9,17 +9,10 @@ import "./App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { AuthProvider } from "./components/auth/authContext.jsx";
-import axios from "axios";
 
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
-  },
-});
-
-const lightTheme = createTheme({
-  palette: {
-    mode: "light",
   },
 });
 
@@ -41,22 +34,25 @@ const LandingPage = () => {
 };
 
 const App = () => {
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-
-    if (storedToken) {
-      try {
-        const { token } = JSON.parse(storedToken);
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-      } catch (error) {
-        console.error("Error parsing stored token:", error);
-      }
-    }
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
+
+      {/* Apply centering styles to the body */}
+      <style>
+        {`
+          body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+          }
+        `}
+      </style>
+
       <AuthProvider>
         <Router>
           <Routes>
@@ -65,7 +61,6 @@ const App = () => {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/userdashboard" element={<UserDashboard />} />
             <Route path="/admindashboard" element={<AdminDashboard />} />
-            {/* Add more routes as needed */}
           </Routes>
         </Router>
       </AuthProvider>

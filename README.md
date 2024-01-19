@@ -4,33 +4,17 @@
 
 ## Features
 
-### Word Pairs
+### Word Pairs Practice
 
-The app allows users to practice word pairs in English and Finnish. Users are prompted with English words and are required to provide the correct Finnish translation or vice versa.
+Users can actively practice word pairs in both English and Finnish. The application presents users with English words, requiring them to provide the corresponding Finnish translation, and vice versa.
 
-### Admin View
+### Admin Panel
 
-A dedicated admin view allows parents or teachers to create, delete, and update word pairs. Word pairs are stored in a MySQL database, making it easy to manage the content.
-
-### Score Tracking
-
-Users receive scores based on their answers, encouraging a sense of achievement and progress.
-
-### Tag Support
-
-The app supports tags, enabling users to focus on specific categories such as colors, vehicles, animals, etc.
-
-### Multilingual Support
-
-Users can practice translations in different languages by extending the word pairs table to include a "language" column.
+A dedicated admin view empowers parents or educators to create, delete, and update word pairs effortlessly. The word pairs are stored in a MySQL database, offering a convenient way to manage content.
 
 ### User Authentication
 
 Secure user authentication is implemented, ensuring that only authorized users can access and modify word pairs.
-
-### Deepl API Integration
-
-The app integrates with the DeepL API for translating new sets of cards from admin to user, providing accurate and efficient translations.
 
 ### Responsive UI
 
@@ -42,7 +26,6 @@ The user interface is designed using Material-UI or Bootstrap, offering a visual
 
 - Node.js
 - MySQL
-- DeepL API Key
 
 ### Installation
 
@@ -76,7 +59,7 @@ npm run start-frontend
 # Backend (from the root directory)
 
 npm run start-backend
-Open your browser and go to http://localhost:3000 to access the application.
+Open your browser and go to http://localhost:3001 to access the application.
 
 Deployment
 The application is structured to facilitate deployment with Docker. The GNU 3.0 license applies to this project. Users can deploy the app with their own database, or if they prefer, they can utilize our database.
@@ -86,7 +69,3 @@ Contributions are welcome! If you have suggestions, bug reports, or feature requ
 
 License
 This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details.
-
-```
-
-```
