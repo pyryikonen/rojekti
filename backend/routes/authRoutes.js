@@ -57,9 +57,8 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
-  console.log("Login attempt with email:", email);
 
-  const result = await loginUser(email, password);
+  const result = await loginUser(req, email, password);
 
   if (result.success) {
     res.status(200).json({ success: true, user: result.user });

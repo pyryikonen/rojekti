@@ -9,11 +9,12 @@ import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useAuth } from "../auth/authContext.jsx";
 import { useNavigate } from "react-router-dom";
-import WordPairsList from "./WordPairList.jsx";
+import WordPairCreation from "../admin/WordPairCreation.jsx";
+import CurrentUserComponent from "../shared/CurrentUserComponent.jsx";
 
 const defaultTheme = createTheme();
 
-export default function UserDashboard() {
+export const UserDashboard = () => {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -25,10 +26,6 @@ export default function UserDashboard() {
   const handleLogout = () => {
     logout();
     navigate("/signin");
-  };
-
-  const handleLogin = () => {
-    login();
   };
 
   return (
@@ -56,9 +53,7 @@ export default function UserDashboard() {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            {user
-              ? `Welcome, ${user && user.username}! (User Dashboard)`
-              : "Welcome, Guest!"}
+            <CurrentUserComponent />
           </Typography>
           <IconButton color="inherit" onClick={handleLogout}>
             Logout
@@ -66,8 +61,7 @@ export default function UserDashboard() {
         </Toolbar>
       </MuiAppBar>
 
-      {/* Include WordPairsList component here */}
-      <WordPairsList />
+      <WordPairCreation />
     </ThemeProvider>
   );
-}
+};

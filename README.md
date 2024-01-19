@@ -48,7 +48,7 @@ Set up the MySQL database:
 Create a database named learn_english.
 Run the provided SQL script to create the word_pairs table.
 Configure the backend:
-Edit backend/server.js to include your MySQL database connection details and DeepL API key.
+Edit backend/server.js to include your MySQL database connection details
 
 Start the application:
 

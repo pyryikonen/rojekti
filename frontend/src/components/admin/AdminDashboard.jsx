@@ -10,16 +10,17 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useAuth } from "../auth/authContext.jsx";
 import { useNavigate } from "react-router-dom";
 import WordPairCreation from "./WordPairCreation.jsx";
+import CurrentUserComponent from "../shared/CurrentUserComponent.jsx";
 
 const defaultTheme = createTheme();
 
-export default function AdminDashboard() {
+export const AdminDashboard = () => {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
   };
 
-  const { user, role, logout, login } = useAuth();
+  const { role, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -44,6 +45,7 @@ export default function AdminDashboard() {
           >
             <ChevronLeftIcon />
           </IconButton>
+
           <Typography
             component="h1"
             variant="h6"
@@ -51,14 +53,15 @@ export default function AdminDashboard() {
             noWrap
             sx={{ flexGrow: 1 }}
           >
-            Welcome, {user ? user.username : "Guest"}! ({role} Dashboard)
+            <CurrentUserComponent />
           </Typography>
           <IconButton color="inherit" onClick={handleLogout}>
             Logout
           </IconButton>
         </Toolbar>
       </MuiAppBar>
+
       <WordPairCreation />
     </ThemeProvider>
   );
-}
+};

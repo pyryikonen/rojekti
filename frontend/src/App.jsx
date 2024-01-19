@@ -1,14 +1,14 @@
 // App.jsx
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SignIn from "./components/shared/SignIn";
-import SignUp from "./components/shared/SignUp";
-import UserDashboard from "./components/user/UserDashboard";
-import AdminDashboard from "./components/admin/AdminDashboard";
 import "./App.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { AuthProvider } from "./components/auth/authContext.jsx";
+import { AdminDashboard } from "./components/admin/AdminDashboard";
+import { UserDashboard } from "./components/user/UserDashboard";
+import SignIn from "./components/shared/SignIn";
+import SignUp from "./components/shared/SignUp";
 
 const darkTheme = createTheme({
   palette: {

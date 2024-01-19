@@ -23,13 +23,15 @@ const registerUser = async (username, email, password, role) => {
   }
 };
 
-const loginUser = async (email, password) => {
+const loginUser = async (req, email, password) => {
   try {
     const [user] = await executeQuery("SELECT * FROM users WHERE email = ?", [
       email,
     ]);
 
     if (user && user.password === password) {
+      // Set user email in the session
+      req.session.email = email;
       return { success: true, user, role: "user" };
     } else {
       // Check if the user is an admin
@@ -39,6 +41,8 @@ const loginUser = async (email, password) => {
       );
 
       if (admin && admin.password === password) {
+        // Set admin email in the session
+        req.session.email = email;
         return { success: true, user: admin, role: "admin" };
       }
     }
