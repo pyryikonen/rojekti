@@ -2,6 +2,10 @@
 
 **Learn English!** is a language learning application designed for kids to practice foreign language grammar, focusing on English to Finnish translations and vice versa. The application provides an interactive interface for users to learn and test their vocabulary in a fun and engaging way.
 
+### Screencast link
+
+https://www.youtube.com/watch?v=VAq2ZOvHG7c
+
 ## Features
 
 ### Word Pairs Practice
