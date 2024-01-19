@@ -4,7 +4,7 @@
 
 ### Screencast link
 
-https://www.youtube.com/watch?v=VAq2ZOvHG7c
+https://youtu.be/8rmMHCW1G7M
 
 ## Features
 
