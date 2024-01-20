@@ -34,11 +34,15 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
-app.use(express.static("./frontend/dist"));
 app.use(bodyParser.json());
+app.use(express.static("./frontend/dist"));
 app.use(authRoutes);
 app.use(wordPairRoutes);
 //app.use(userRoutes);
+
+app.all("*", (req, res) => {
+  res.sendFile("index.html", { root: "./frontend/dist" });
+});
 
 // No need for connection.connect() in the case of a pool
 
