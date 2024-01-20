@@ -8,6 +8,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "install-all": "npm isntall",
     "start": "concurrently \"npm run frontend\" \"npm run backend\"",
     "frontend": "npm run dev --workspace=frontend",
     "backend": "npm start --workspace=backend",

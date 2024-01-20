@@ -8,9 +8,12 @@ const wordPairRoutes = require("./routes/wordPairRoutes");
 const dotenv = require("dotenv");
 const pool = require("./dbConfig");
 
+dotenv.config();
+
 const app = express();
 
-dotenv.config();
+// Set up Express to trust the proxy in our case it would be the Nginx proxy server?
+app.set("trust proxy", 1);
 
 app.use(
   session({
@@ -31,9 +34,8 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
-
-app.use(bodyParser.json());
 app.use(express.static("./frontend/dist"));
+app.use(bodyParser.json());
 app.use(authRoutes);
 app.use(wordPairRoutes);
 //app.use(userRoutes);
