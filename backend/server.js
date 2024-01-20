@@ -30,7 +30,7 @@ app.use(
 );
 
 const connection = pool;
-const port = 3001;
+const port = 8080;
 let server = undefined;
 
 app.use(bodyParser.json());
