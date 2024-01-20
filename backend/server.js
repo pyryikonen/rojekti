@@ -21,6 +21,9 @@ app.use(
   })
 );
 */
+const connection = pool;
+const port = 8080;
+let server = undefined;
 
 app.use(
   cors({
@@ -30,10 +33,6 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
-
-const connection = pool;
-const port = 8080;
-let server = undefined;
 
 app.use(bodyParser.json());
 app.use(express.static("./frontend/dist"));

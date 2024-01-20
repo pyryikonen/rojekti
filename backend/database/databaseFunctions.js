@@ -1,7 +1,6 @@
 //databaseFunctions.js
 const pool = require("../dbConfig");
 const yup = require("yup");
-const mysql = require("mysql");
 
 const wordPairSchema = yup.object().shape({
   sourceWord: yup.string().required(),
