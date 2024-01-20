@@ -38,10 +38,6 @@ RUN npm install
 # Copy all backend source code to the working directory
 COPY backend .
 
-# Create a new directory for frontend files
-# (to avoid conflicts with backend files)
-RUN mkdir -p /app/backend/frontend/dist
-
 # Copy the built frontend files from the frontend-builder stage
 # to the directory serving frontend files in the backend
 COPY --from=frontend-builder /app/frontend/dist /app/backend/frontend/dist
