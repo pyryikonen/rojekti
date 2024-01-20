@@ -2,7 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const session = require("express-session");
+//const session = require("express-session");
 const authRoutes = require("./routes/authRoutes");
 const wordPairRoutes = require("./routes/wordPairRoutes");
 const dotenv = require("dotenv");
@@ -12,6 +12,7 @@ const app = express();
 
 dotenv.config();
 
+/*
 app.use(
   session({
     secret: process.env.SECRET_KEY,
@@ -19,6 +20,7 @@ app.use(
     saveUninitialized: true,
   })
 );
+*/
 
 app.use(
   cors({
