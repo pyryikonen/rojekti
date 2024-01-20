@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-//const session = require("express-session");
+const session = require("express-session");
 const { loginUser, registerUser } = require("../utils/userUtils");
 const { fetchUsers } = require("../database/databaseFunctions");
 const dotenv = require("dotenv");
@@ -9,7 +9,6 @@ const dotenv = require("dotenv");
 const router = express.Router();
 dotenv.config();
 
-/*
 router.use(
   session({
     secret: process.env.SECRET_KEY,
@@ -18,7 +17,7 @@ router.use(
     cookie: { secure: false },
   })
 );
-*/
+
 router.use(
   cors({
     origin: "http://localhost:5173",

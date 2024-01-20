@@ -63,7 +63,7 @@ npm run start-frontend
 # Backend (from the root directory)
 
 npm run start-backend
-Open your browser and go to http://localhost:3001 to access the application.
+Open your browser and go to http://localhost:8080 to access the application.
 
 Deployment
 The application is structured to facilitate deployment with Docker. The GNU 3.0 license applies to this project. Users can deploy the app with their own database, or if they prefer, they can utilize our database.
