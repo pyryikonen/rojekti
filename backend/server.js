@@ -2,7 +2,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-//const session = require("express-session");
+const session = require("express-session");
 const authRoutes = require("./routes/authRoutes");
 const wordPairRoutes = require("./routes/wordPairRoutes");
 const dotenv = require("dotenv");
@@ -12,7 +12,6 @@ const app = express();
 
 dotenv.config();
 
-/*
 app.use(
   session({
     secret: process.env.SECRET_KEY,
@@ -20,8 +19,7 @@ app.use(
     saveUninitialized: true,
   })
 );
-*/
-const connection = pool;
+
 const port = 8080;
 let server = undefined;
 
@@ -45,7 +43,6 @@ app.use(wordPairRoutes);
 server = app
   .listen(port, () => {
     console.log(`SERVER: Server listening on port ${port}`);
-    console.log(process.env); // ADD THIS!!
   })
   .on("error", (err) => {
     console.error("SERVER: Error starting server:", err);
@@ -80,10 +77,6 @@ const gracefulShutdown = () => {
     process.exit(0); // Exit the process if the server was not opened
   }
 };
-
-app.get("/", (req, res) => {
-  res.send("Hello, this is the root path!");
-});
 
 // Define graceful shutdown listeners
 process.on("SIGTERM", gracefulShutdown);
